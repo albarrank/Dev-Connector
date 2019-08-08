@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 // import axios from 'axios';
 
-
-const Register = () => {
+// line 8 allows us to destructure 'setAlert' from 'props'
+const Register = ({ setAlert }) => {
     /* 
         A React Hook that lets you set your own custom states
         'formData' would be your state === 'this.state' in 'Class extends' component
@@ -28,7 +31,9 @@ const Register = () => {
     const onRegister = async (event) => {
         event.preventDefault();
         if (password !== password2) {
-            console.log("Password don't match");
+
+            // This is how you need to use Redux within react through props object 
+            setAlert("Password don't match", "danger");
         } else {
             console.log("Success")
             /*
@@ -115,4 +120,9 @@ const Register = () => {
     )
 };
 
-export default Register;
+Register.propTypes = {
+    setAlert: PropTypes.func.isRequired
+};
+
+// Connect and Initialize the reducers here 
+export default connect(null, { setAlert })(Register);
