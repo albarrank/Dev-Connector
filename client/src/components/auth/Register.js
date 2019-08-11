@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 // import axios from 'axios';
 
 // line 8 allows us to destructure 'setAlert' from 'props'
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
     /* 
         A React Hook that lets you set your own custom states
         'formData' would be your state === 'this.state' in 'Class extends' component
@@ -35,7 +36,7 @@ const Register = ({ setAlert }) => {
             // This is how you need to use Redux within react through props object 
             setAlert("Password don't match", "danger");
         } else {
-            console.log("Success")
+            register({ name, email, password})
             /*
             //============= The code below is how we would do an api call with 'axios' without using redux =========================//
                 const newUser = {
@@ -62,6 +63,10 @@ const Register = ({ setAlert }) => {
         }
     } 
 
+    if (isAuthenticated) {
+        return <Redirect to="/dashboard" />
+    }
+    
     return (
         <div>
             <h1 className="large text-primary">Sign Up</h1>
@@ -73,7 +78,7 @@ const Register = ({ setAlert }) => {
                     placeholder="Name" 
                     name="name" 
                     value={name} 
-                    required 
+                     
                     onChange={(event) => onInputChange(event)}
                 />
                 </div>
@@ -83,7 +88,7 @@ const Register = ({ setAlert }) => {
                     placeholder="Email Address" 
                     name="email"
                     value={email}
-                    required
+                    
                     onChange={(event) => onInputChange(event)} 
                     />
                 <small className="form-text"
@@ -96,7 +101,6 @@ const Register = ({ setAlert }) => {
                     type="password"
                     placeholder="Password"
                     name="password"
-                    minLength="7"
                     value={password}
                     onChange={(event) => onInputChange(event)}
                 />
@@ -106,7 +110,6 @@ const Register = ({ setAlert }) => {
                     type="password"
                     placeholder="Confirm Password"
                     name="password2"
-                    minLength="7"
                     value={password2}
                     onChange={(event) => onInputChange(event)}
                 />
@@ -121,8 +124,19 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+
 };
 
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+
 // Connect and Initialize the reducers here 
-export default connect(null, { setAlert })(Register);
+export default connect(
+    mapStateToProps,
+    { setAlert, register }
+)(Register);
