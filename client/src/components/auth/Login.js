@@ -69,7 +69,7 @@ const Login = ({ login, isAuthenticated }) => {
             </p>
         </div>
     );
-}
+};
 
 Login.propTypes = {
     login: PropTypes.func.isRequired,
