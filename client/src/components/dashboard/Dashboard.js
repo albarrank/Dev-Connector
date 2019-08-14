@@ -23,7 +23,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                     !profile  
                         ? <Fragment>
                             <p>You have not setup a profile, please add some info</p>
-                            <Link to='/create-proile' className='btn btn-primary my-1'>
+                            <Link to='/create-profile' className='btn btn-primary my-1'>
                                 Create Profile
                             </Link>
                         </Fragment> 
