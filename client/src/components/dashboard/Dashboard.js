@@ -1,9 +1,12 @@
 import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import Spinner from '../layout/Spinner';
+import DashboardActions from './DashboardActions';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { getCurrentProfile } from '../../actions/profile';
-import Spinner from '../layout/Spinner';
+
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
     useEffect(() => {
@@ -21,13 +24,17 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                 </p>
                 { 
                     !profile  
-                        ? <Fragment>
+                        ? 
+                        <Fragment>
                             <p>You have not setup a profile, please add some info</p>
                             <Link to='/create-profile' className='btn btn-primary my-1'>
                                 Create Profile
                             </Link>
                         </Fragment> 
-                        : <Fragment>has</Fragment>
+                        : 
+                        <Fragment>
+                            <DashboardActions/>
+                        </Fragment>
                 }
           </Fragment>
     );
