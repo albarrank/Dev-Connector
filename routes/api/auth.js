@@ -44,14 +44,14 @@ router.post('/', [
             let user = await User.findOne({ email: email });
 
             if (!user) {
-                return res.status(400).json(({ erors: [ {msg: "Invalid Credentials"} ] }));
+                return res.status(400).json(({ errors: [ {msg: "Invalid Credentials"} ] }));
             }    
 
             // comparing plain text password to hashed password
             const isMatch = await bcrypt.compare(password, user.password);
             
             if (!isMatch) {
-                return res.status(400).json(({ erors: [ {msg: "Invalid Credentials"} ] }));
+                return res.status(400).json(({ errors: [ {msg: "Invalid Credentials"} ] }));
             }
 
             const payload = {

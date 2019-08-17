@@ -2,6 +2,8 @@ import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
+import Experiences from './Experience';
+import Education from './Education';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
@@ -33,7 +35,9 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                         </Fragment> 
                         : 
                         <Fragment>
-                            <DashboardActions/>
+                            <DashboardActions />
+                            <Experiences experience={profile.experience}/>
+                            <Education education={profile.education} />
                         </Fragment>
                 }
           </Fragment>

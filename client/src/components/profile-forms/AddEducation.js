@@ -10,7 +10,6 @@ const AddEducation = ({ addEducation, history }) => {
         school: '',
         degree: '',
         fieldofstudy: '',
-        date: '',
         from: '',
         current: false,
         to: '',
@@ -24,7 +23,6 @@ const AddEducation = ({ addEducation, history }) => {
         school,
         degree,
         fieldofstudy,
-        date,
         from,
         current,
         to,
@@ -42,16 +40,16 @@ const AddEducation = ({ addEducation, history }) => {
 
     return (
         <Fragment>
-              <h1 class="large text-primary">
+              <h1 className="large text-primary">
         Add Your Education
       </h1>
-      <p class="lead">
-        <i class="fas fa-graduation-cap"></i> Add any school, bootcamp, etc that
+      <p className="lead">
+        <i className="fas fa-graduation-cap"></i> Add any school, bootcamp, etc that
         you have attended
       </p>
       <small>* = required field</small>
-      <form class="form" onSubmit={(event) => onSubmit(event)}>
-        <div class="form-group">
+      <form className="form" onSubmit={(event) => onSubmit(event)}>
+        <div className="form-group">
           <input
             type="text"
             placeholder="* School or Bootcamp"
@@ -61,7 +59,7 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={(event) => onChange(event)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="text"
             placeholder="* Degree or Certificate"
@@ -71,7 +69,7 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={(event) => onChange(event)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input 
             type="text"
             placeholder="Field Of Study"
@@ -80,7 +78,7 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={(event) => onChange(event)} 
             />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h4>From Date</h4>
           <input 
             type="date"
@@ -89,12 +87,11 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={(event) => onChange(event)}
              />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <p>
             <input
                 type="checkbox" 
                 name="current" 
-                value="" 
                 value={current}
                 onChange={(event) =>{
                     setFormData({...formData, current: !current});
@@ -103,7 +100,7 @@ const AddEducation = ({ addEducation, history }) => {
                 /> Current School or Bootcamp
           </p>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h4>To Date</h4>
           <input 
             type="date" 
@@ -113,7 +110,7 @@ const AddEducation = ({ addEducation, history }) => {
             disabled={toDateDisabled ? 'disabled' : ''}
             />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <textarea
             name="description"
             cols="30"
@@ -123,8 +120,8 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={(event) => onChange(event)}
           ></textarea>
         </div>
-        <input type="submit" class="btn btn-primary my-1" />
-        <Link class="btn btn-light my-1" href="/dashboard">Go Back</Link>
+        <input type="submit" className="btn btn-primary my-1" />
+        <Link className="btn btn-light my-1" to="/dashboard">Go Back</Link>
       </form>
         </Fragment>
     );
