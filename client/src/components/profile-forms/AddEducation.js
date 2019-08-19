@@ -97,7 +97,7 @@ const AddEducation = ({ addEducation, history }) => {
                     setFormData({...formData, current: !current});
                     toggleDisabled(!toDateDisabled);
                 }}
-                /> Current School or Bootcamp
+                /> Current School
           </p>
         </div>
         <div className="form-group">
