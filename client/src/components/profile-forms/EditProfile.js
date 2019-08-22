@@ -38,16 +38,16 @@ const EditProfile = ({
             skills: loading || !profile.skills ? '' : profile.skills.join(','),
             githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
             bio: loading || !profile.bio ? '' : profile.bio,
-            twitter: loading || !profile.social.twitter ? '' : profile.social.twitter,
-            facebook: loading || !profile.social.facebook ? '' : profile.social.facebook,
-            linkedin: loading || !profile.social.linkedin ? '' : profile.social.linkedin,
-            youtube: loading || !profile.social.youtube ? '' : profile.social.youtube,
-            instagram: loading || !profile.social.instagram ? '' : profile.social.instagram,
+            twitter: loading || !profile.social ? '' : profile.social.twitter,
+            facebook: loading || !profile.social ? '' : profile.social.facebook,
+            linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+            youtube: loading || !profile.social ? '' : profile.social.youtube,
+            instagram: loading || !profile.social ? '' : profile.social.instagram,
 
         });
 
-
-    },[loading])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[loading, getCurrentProfile])
 
     const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
@@ -119,7 +119,7 @@ const EditProfile = ({
                     <div className="form-group">
                     <input type="text" placeholder="Location" name="location" value={location} onChange={(event) => onChange(event)} />
                     <small className="form-text"
-                        >City & state suggested (eg. Boston, MA)</small
+                        >City and state suggested (eg. Boston, MA)</small
                     >
                     </div>
                     <div className="form-group">

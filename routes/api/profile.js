@@ -126,7 +126,7 @@ async (req, res) =>{
             profile = new Profile(profileFields);
             
             await profile.save(); 
-            res.json(profile);
+           return res.json(profile);
         }
 
 
