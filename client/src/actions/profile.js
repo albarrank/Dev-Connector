@@ -8,6 +8,7 @@ import {
     UPDATE_PROFILE,
     DELETE_ACCOUNT,
     CLEAR_PROFILE,
+    GET_REPOS
 } from './types';
 // Get all profiles 
 export const getAllProfiles = () => async (dispatch ) => {
@@ -74,6 +75,27 @@ export const getCurrentProfile = () => async (dispatch) => {
         });
     };
 };
+
+// Get Github repos
+export const getGithubReops = (username) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/api/profile/github/${username}`);
+
+        dispatch({
+            type: GET_REPOS,
+            payload: res.data
+        });
+        
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: {
+                msg: err.response.statusText, 
+                status: err.response.status
+            }
+        });
+    }
+}
 
 // Create or update profile
 export const createProfile = (formData, history, edit = false) => async (dispatch) => {

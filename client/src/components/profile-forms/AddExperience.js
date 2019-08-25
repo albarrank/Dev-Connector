@@ -29,7 +29,7 @@ const AddExperience = ({ addExperience, history }) => {
     } = formData
 
     const onChange = (event) => {
-        setFormData({...formData, [event.target.name]: event.target.value.trim()})
+        setFormData({...formData, [event.target.name]: event.target.value})
     }
 
     const onSubmit = (event) => {
