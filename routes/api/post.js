@@ -94,10 +94,10 @@ router.delete('/:id', auth, async (req, res) => {
 
         // Check user
         if (post.user.toString() !== req.user.id) {
-            res.status(401).json({ msg: "User not authorized" });
+            return res.status(401).json({ msg: "User not authorized" });
         } else {
             await post.remove();
-            res.json({ msg: "Post removed" });
+            return res.json({ msg: "Post removed" });
         }
 
         res.json(post);
@@ -120,11 +120,11 @@ router.put('/like/:id', auth, async (req, res) => {
 
         // Check if the post has already been liked
         if (post.like.filter(like => like.user.toString() === req.user.id).length > 0) {
-            res.status(400).json({ msg : "Post already liked" })
+            return res.status(400).json({ msg : "Post already liked" })
         } else {
             post.like.unshift({ user : req.user.id });
             await post.save();
-            res.json(post.like);
+            return res.json(post.like);
         }
     } catch (err) {
         console.error(err.message);
@@ -141,16 +141,16 @@ router.put('/unlike/:id', auth, async (req, res) => {
 
         // Check if the post has already been liked
         if (post.like.filter(like => like.user.toString() === req.user.id).length === 0) {
-            res.status(400).json({ msg : "Post has not yet been liked" })
+            return res.status(400).json({ msg : "Post has not yet been liked" })
         } else {
 
             // Get remove index
-            const removeIndex = post.like.map(like => like.user.toString().indexOf(req.user.id));
+            const removeIndex = post.like.map(like => like.user.toString()).indexOf(req.user.id);
             
             post.like.splice(removeIndex, 1);
 
             await post.save();
-            res.json(post.like);
+            return res.json(post.like);
         }
     } catch (err) {
         console.error(err.message);
@@ -190,7 +190,7 @@ router.post('/comment/:id',
 
                 await post.save();
 
-                res.json(post.comments);
+                return res.json(post.comments);
             } catch (err) {
                 console.error(err.message);
                 res.status(500).send("Server Error");
@@ -224,7 +224,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req,res) => {
 
                 await post.save();
 
-                res.json(post.comments);
+                return res.json(post.comments);
         }
     } catch (err) {
         console.error(err);
