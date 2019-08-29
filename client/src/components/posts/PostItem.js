@@ -20,20 +20,21 @@ const PostItem = (
             like, 
             comments, 
             date
-        }
+        },
+        showActions
     }
     ) => {
     return (
         <div className="post bg-white p-1 my-1">
             <div>
-                <a href="profile.html">
+                <Link to={`/profile/${user}`}>
                 <img
                     className="round-img"
                     src={avatar}
                     alt=""
                 />
                 <h4>{name}</h4>
-                </a>
+                </Link>
             </div>
 
             <div>
@@ -44,7 +45,9 @@ const PostItem = (
                 <p className="post-date">
                     Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
                 </p>
-
+                {
+                    showActions && 
+                    <Fragment>
                 <button type="button" onClick={(e) => addLike(_id)} className="btn btn-light">
                     <i className="fas fa-thumbs-up"></i>{" "}
                     <span>
@@ -78,9 +81,15 @@ const PostItem = (
                     )
                 }
 
+                    </Fragment>
+                }
             </div>
         </div>
     );
+};
+
+PostItem.defaultProps = {
+    showActions: true
 };
 
 PostItem.propTypes = {

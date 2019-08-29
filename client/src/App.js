@@ -13,7 +13,8 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 
 // Posts
-import Posts from './components/post/Posts';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post'
 
 // Forms
 import AddExperience from './components/profile-forms/AddExperience';
@@ -58,6 +59,7 @@ const App = () => {
                 <Route exact path='/profile/:id' component={Profile} />
                 <PrivateRoute exact path='/dashboard' component={Dashboard} />
                 <PrivateRoute exact path='/posts' component={Posts} />
+                <PrivateRoute exact path='/post/:id' component={Post} />
                 <PrivateRoute exact path='/edit-profile' component={EditProfile} />
                 <PrivateRoute exact path='/create-profile' component={CreateProfile} />
                 <PrivateRoute exact path='/add-experience' component={AddExperience} />
