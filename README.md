@@ -15,7 +15,7 @@ What things you need to install the software and how to install them
 Node -(you can download from their website)
 Gitbash -(website)
 npm -(comes with node)
-run 'npm install -g create-react-'
+run 'npm install -g create-react'-(installs react into your machine)
 
 ```
 
