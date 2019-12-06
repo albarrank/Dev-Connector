@@ -1,4 +1,4 @@
-# Dev Connector
+# SocialDev
 A social media platform that allows software developers to connect with eachother.
 People who sign up can create a profile containing, education, experience, job title, etc. 
 Even allowing them to talk to eachother by creating posts and responding to them.
